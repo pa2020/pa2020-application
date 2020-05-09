@@ -1,0 +1,17 @@
+2020-05-06 14:12:49,812 | DEBUG | application | <module> | AAAAA
+2020-05-07 11:39:23,878 | DEBUG | application | <module> | AAAAA
+2020-05-07 11:39:23,882 | DEBUG | connectionpool | _new_conn | Starting new HTTPS connection (1): jsonplaceholder.typicode.com:443
+2020-05-07 11:39:24,028 | DEBUG | connectionpool | _make_request | https://jsonplaceholder.typicode.com:443 "GET /todos/1 HTTP/1.1" 200 None
+2020-05-07 11:39:50,036 | DEBUG | application | <module> | AAAAA
+2020-05-07 11:39:50,038 | DEBUG | connectionpool | _new_conn | Starting new HTTPS connection (1): jsonplaceholder.typicode.com:443
+2020-05-07 11:39:50,073 | DEBUG | connectionpool | _make_request | https://jsonplaceholder.typicode.com:443 "GET /todos/1 HTTP/1.1" 200 None
+2020-05-09 06:54:14,010 | DEBUG | connectionpool | _new_conn | Starting new HTTPS connection (1): jsonplaceholder.typicode.com:443
+2020-05-09 06:54:15,633 | DEBUG | connectionpool | _make_request | https://jsonplaceholder.typicode.com:443 "GET //todos/1 HTTP/1.1" 404 2
+2020-05-09 06:55:02,057 | DEBUG | connectionpool | _new_conn | Starting new HTTPS connection (1): jsonplaceholder.typicode.com:443
+2020-05-09 06:55:02,088 | DEBUG | connectionpool | _make_request | https://jsonplaceholder.typicode.com:443 "GET /todos/1 HTTP/1.1" 200 None
+2020-05-09 06:55:50,538 | DEBUG | connectionpool | _new_conn | Starting new HTTPS connection (1): jsonplaceholder.typicode.com:443
+2020-05-09 06:55:50,568 | DEBUG | connectionpool | _make_request | https://jsonplaceholder.typicode.com:443 "GET /todos/1 HTTP/1.1" 200 None
+2020-05-09 06:56:24,427 | DEBUG | connectionpool | _new_conn | Starting new HTTPS connection (1): jsonplaceholder.typicode.com:443
+2020-05-09 06:56:24,464 | DEBUG | connectionpool | _make_request | https://jsonplaceholder.typicode.com:443 "GET /todos/1 HTTP/1.1" 200 None
+2020-05-09 06:56:33,014 | DEBUG | connectionpool | _new_conn | Starting new HTTPS connection (1): jsonplaceholder.typicode.com:443
+2020-05-09 06:56:33,044 | DEBUG | connectionpool | _make_request | https://jsonplaceholder.typicode.com:443 "GET /todos/1 HTTP/1.1" 200 None
