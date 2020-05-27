@@ -1,10 +1,10 @@
+import os
 import mysql.connector
-from main.src.db.config import DB_CONFIG
 
 
 def connect():
-    db = mysql.connector.connect(host=DB_CONFIG.get('host'),
-                                 database=DB_CONFIG.get('database'),
-                                 user=DB_CONFIG.get('user'),
-                                 password=DB_CONFIG.get('password'))
+    db = mysql.connector.connect(host=os.getenv('DB_HOST'),
+                                 database=os.getenv('DB_DATABASE'),
+                                 user=os.getenv('DB_USER'),
+                                 password=os.getenv('DB_PASSWORD'))
     return db

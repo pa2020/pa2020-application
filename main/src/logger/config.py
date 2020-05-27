@@ -2,9 +2,6 @@ import logging
 import logging.config
 import logs
 import os
-from config import CONFIG
-LOGGER_CONFIG = CONFIG.get('logger')
-
 
 def logger():
     path = os.path.dirname(logs.__file__)
@@ -19,21 +16,21 @@ def logger():
         'handlers': {
             'log_file': {
                 'class': 'logging.handlers.RotatingFileHandler',
-                'level': LOGGER_CONFIG.get('level'),
+                'level': int(os.getenv('LOGGER_LEVEL')),
                 'formatter': 'simple',
-                'filename': path + '/' + LOGGER_CONFIG.get('filename') + '.log',
+                'filename': path + '/' + os.getenv('LOGGER_FILENAME') + '.log',
                 'maxBytes': 50000000,
                 'backupCount': 1,
                 'encoding': 'utf8'
             },
             'log_console': {
                 'class': 'logging.StreamHandler',
-                'level': LOGGER_CONFIG.get('level'),
+                'level': int(os.getenv('LOGGER_LEVEL')),
                 'formatter': 'simple'
             }
         },
         'root': {
-            'level': LOGGER_CONFIG.get('level'),
+            'level': int(os.getenv('LOGGER_LEVEL')),
             'handlers': ['log_file', 'log_console']
         }
     }
