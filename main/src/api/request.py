@@ -14,9 +14,14 @@ class Request:
     def __init__(self):
         self.api_twitter = authenticate()
 
-    def get(self, route, query='', headers=''):
-        request = os.getenv('API_URL') + route
+    def get(self, route, address=os.getenv('API_URL'), query='', headers=''):
+        request = address + route
         res = requests.get(request, params=query, headers=headers)
+        return res
+
+    def post(self, route, body='', headers=''):
+        request = os.getenv('API_URL') + route
+        res = requests.post(request, body=body, headers=headers)
         return res
 
     def tweets(self, word, count=1000, language='fr'):

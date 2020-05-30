@@ -30,6 +30,7 @@ jobs:
         pip install -U pytest
         pip install requests
         pip install tweepy
+        pip install fasttext
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
