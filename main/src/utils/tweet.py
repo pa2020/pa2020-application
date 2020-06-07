@@ -7,6 +7,7 @@ import itertools
 import demoji
 from .dicts import *
 from ..logger.config import logger
+demoji.download_codes()
 
 log = logging.getLogger(__name__)
 logger()
