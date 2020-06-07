@@ -8,9 +8,8 @@ app = Flask(__name__)
 import main.src.api.routes
 log = logging.getLogger(__name__)
 logger()
-from main.src.learning.analyze import train
-train()
+
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=2000)

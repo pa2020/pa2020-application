@@ -1,4 +1,5 @@
 import logging
+import threading
 from main.src.logger.config import logger
 from .satisfaction import *
 import requests
@@ -12,9 +13,8 @@ def printHello():
     print("Hello")
 
 
-def runnerTwitter(word):
+def runnerTwitter(word, id_request):
     log.info("Twitter inspection started")
-    thread = threading.Thread(target=runner, kwargs={'word': word})
+    thread = threading.Thread(target=runner, kwargs={'word': word, 'id_request': id_request})
     thread.start()
-    log.info("Twitter inspection done")
 

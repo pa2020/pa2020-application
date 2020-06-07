@@ -21,7 +21,7 @@ class Request:
 
     def post(self, route, body='', headers=''):
         request = os.getenv('API_URL') + route
-        res = requests.post(request, body=body, headers=headers)
+        res = requests.post(request, json=body, headers=headers)
         return res
 
     def tweets(self, word, count=1000, language='fr'):
