@@ -1,10 +1,10 @@
 import logging
 import logging.config
-import logs
 import os
 
+
 def logger():
-    path = os.path.dirname(logs.__file__)
+    path = os.path.dirname(os.path.realpath(__file__))
     config_logger = {
         'version': 1,
         'disable_existing_loggers': False,
