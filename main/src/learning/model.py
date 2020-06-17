@@ -14,6 +14,7 @@ def analyze(data):
         print('sentence "' + sentence + '" ->', d[-1])
     return d
 
+
 def statistics(analyzed):
     positive = 0.0
     negative = 0.0
@@ -27,6 +28,12 @@ def statistics(analyzed):
             elif row[0][label] == '__label__NEUTRAL':
                 neutral += row[1][label]
     total = len(analyzed)
+    if total == 0:
+        log.info('Pas de Tweets analysés')
+        return {'positive': 0,
+                'negative': 0,
+                'neutral': 0,
+                'total': 0}
     res = {
         'positive': (positive / total) * 100,
         'negative': (negative / total) * 100,

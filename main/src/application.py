@@ -1,11 +1,12 @@
 from dotenv import load_dotenv
 load_dotenv()
+
+from main.src.thread.satisfaction import runAnalyze
 import logging
 from main.src.logger.config import logger
 from flask import Flask, request
-from main.src.api.request import Request
-from main.src.thread.runner import runnerTwitter
-from main.src.learning.generation import generateModel
+import json
+
 app = Flask(__name__)
 log = logging.getLogger(__name__)
 logger()
@@ -20,13 +21,9 @@ if __name__ == '__main__':
         if request.data == b'':
             print(request.form)
             return 'form data received. must be JSON row data'
-        else:
-            print(request.json)
-            body = request.json
-            req = Request()
-            # req.put('/api/v1/request/' + body['request_id'], {"update_time": date.today(), "state": "RUNNING"})
-            runnerTwitter(body['sentence'], body['request_id'])
-            return 'json data received'
+        body = request.json
+        res = runAnalyze(body['sentence'], body['request_id'])  # runnerTwitter(body['sentence'], body['request_id'])
+        return json.dumps(res)
 
 
     @app.route('/generate')

@@ -15,6 +15,12 @@ def printHello():
 
 def runnerTwitter(word, request_id):
     log.info("Twitter inspection started")
-    thread = threading.Thread(target=runner, kwargs={'word': word, 'reqId': request_id})
+    thread = threading.Thread(target=runAnalyze, kwargs={'word': word, 'reqId': request_id})
+    thread.start()
+
+
+def runnerModel(path):
+    log.info("Twitter inspection started")
+    thread = threading.Thread(target=runGenerate, kwargs={'path': path})
     thread.start()
 
