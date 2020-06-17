@@ -1,10 +1,11 @@
 import logging
+import os
 import fasttext
 from main.src.logger.config import logger
 
 log = logging.getLogger(__name__)
 logger()
-model = fasttext.load_model('D:/ESGI/DeepLearning/Sentiment_dataset/betsentiment-EN-tweets-sentiment-teams.model')
+model = fasttext.load_model(os.getcwd() + '/betsentiment-EN-tweets-sentiment-teams.model')
 
 
 def analyze(data):
