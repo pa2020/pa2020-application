@@ -1,0 +1,6 @@
+.idea
+*.log
+.env
+*.csv
+*.pyc
+*.model
