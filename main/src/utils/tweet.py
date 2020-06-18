@@ -17,7 +17,7 @@ def clearTweets(tweets):
     log.info('Clearing tweets')
     return [clearTweet(tweet) for tweet in tweets]
 
-
+# TODO : Add suppresion de rt en debut de chaine
 def clearTweet(tweet):
     tweet = BeautifulSoup(tweet, features="html.parser").get_text()  # Remove HTML content (&amp, %20...)
     tweet = tweet.replace('\x92', "'")  # Special case not handled previously.
