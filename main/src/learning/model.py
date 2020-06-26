@@ -43,9 +43,9 @@ def statistics(analyzed):
         log.info('Pas de Tweet analysé')
         return {}, {}
     res_sentence = {
-        'positive_comment': positive_sentence,
-        'negative_comment': negative_sentence,
-        'neutral_comment': neutral_sentence,
+        'positive': positive_sentence,
+        'negative': negative_sentence,
+        'neutral': neutral_sentence,
         'unanalyzed': 0,
     }
     res_stat = {
