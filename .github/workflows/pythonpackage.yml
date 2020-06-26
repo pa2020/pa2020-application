@@ -23,6 +23,7 @@ jobs:
         pip install -U pytest
         pip install requests
         pip install bs4
+        pip install flask
         pip install tweepy
         pip install fasttext
         pip install python-dotenv

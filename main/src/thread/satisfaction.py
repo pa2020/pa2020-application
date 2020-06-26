@@ -23,7 +23,7 @@ def runAnalyze(word, reqId):
     stats_ratio['request_id'] = reqId
     stats_sentence['requests'] = {'request_id': reqId}
     log.info('Prediction done. Sending values to the API')
-    req.post('/api/v1/analyzes/', stats_sentence)
+    req.post('/api/v1/analyzes/', stats_sentence, {'Authorization': 'Bearer '+os.getenv('API_TOKEN')})
     req.put('/api/v1/requests/'+str(reqId), {"update_time": str(date.today()), "state": "DONE"}, {'Authorization': 'Bearer '+os.getenv('API_TOKEN')})
     return stats_ratio
 

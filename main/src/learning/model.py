@@ -1,13 +1,12 @@
 import logging
 import os
 import fasttext
-from enum import Enum
 
 from main.src.logger.config import logger
 
 log = logging.getLogger(__name__)
 logger()
-model = fasttext.load_model(os.getcwd() + '\\betsentiment-EN-tweets-sentiment-teams.model')
+model = fasttext.load_model(os.getcwd() + '/betsentiment-EN-tweets-sentiment-teams.model')
 
 
 def analyze(data):
