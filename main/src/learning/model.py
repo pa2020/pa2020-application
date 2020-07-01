@@ -43,8 +43,8 @@ def statistics(analyzed):
     if total == 0:
         log.info('Pas de Tweet analysé')
     res_sentence = Format.sentence(positive_sentence, negative_sentence, neutral_sentence)
-    res_stat = Format.stats(total, positive, negative, neutral)
+    res_stat = Format.ratio(total, positive, negative, neutral)
     log.info('POSITIF :' + str(res_stat['positive']) + '%')
     log.info('NEGATIF :' + str(res_stat['negative']) + '%')
     log.info('NEUTRE :' + str(res_stat['neutral']) + '%')
-    return res_sentence, res_stat
+    return res_stat

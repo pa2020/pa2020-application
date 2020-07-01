@@ -17,9 +17,3 @@ def analyze():
     body = request.json
     res = runAnalyze(body['sentence'], body['request_id'])  # runnerTwitter(body['sentence'], body['request_id'])
     return json.dumps(res)
-
-
-@app.route('/generate')
-def generate():
-    # generateModel('D:/ESGI/DeepLearning/Sentiment_dataset/betsentiment-EN-tweets-sentiment-teams.csv')
-    return 'Ok'
