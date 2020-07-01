@@ -26,17 +26,17 @@ class Request:
         texts = [x.full_text for x in lang]
         return texts
 
-    def get(self, route, address=os.getenv('API_URL'), query='', headers=''):
+    def get(self, route, address=os.getenv('API_URL'), query='', auth=False):
         request = address + route
-        res = requests.get(request, params=query, headers=self.auth)
+        res = requests.get(request, params=query, headers=self.auth if auth else '')
         return res
 
-    def put(self, route, body='', headers=''):
+    def put(self, route, body='', auth=False):
         request = os.getenv('API_URL') + route
-        res = requests.put(request, json=body, headers=self.auth)
+        res = requests.put(request, json=body, headers=self.auth if auth else '')
         return res
 
-    def post(self, route, body='', headers=''):
+    def post(self, route, body='', auth=False):
         request = os.getenv('API_URL') + route
-        res = requests.post(request, json=body, headers=self.auth)
+        res = requests.post(request, json=body, headers=self.auth if auth else '')
         return res

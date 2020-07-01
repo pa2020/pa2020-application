@@ -1,6 +1,7 @@
 import logging
 import os
 import fasttext
+import main.src.utils.responseFormat as Format
 
 from main.src.logger.config import logger
 
@@ -41,19 +42,8 @@ def statistics(analyzed):
     total = len(analyzed)
     if total == 0:
         log.info('Pas de Tweet analysé')
-        return {}, {}
-    res_sentence = {
-        'positive': positive_sentence,
-        'negative': negative_sentence,
-        'neutral': neutral_sentence,
-        'unanalyzed': 0,
-    }
-    res_stat = {
-        'positive': (positive / total) * 100,
-        'negative': (negative / total) * 100,
-        'neutral': (neutral / total) * 100,
-        'total': total
-    }
+    res_sentence = Format.sentence(positive_sentence, negative_sentence, neutral_sentence)
+    res_stat = Format.stats(total, positive, negative, neutral)
     log.info('POSITIF :' + str(res_stat['positive']) + '%')
     log.info('NEGATIF :' + str(res_stat['negative']) + '%')
     log.info('NEUTRE :' + str(res_stat['neutral']) + '%')
