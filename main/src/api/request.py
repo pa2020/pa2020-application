@@ -11,14 +11,17 @@ def authenticate():
 
 class Request:
 
-    def __init__(self):
+    def __init__(self, auth=True):
         self.api_twitter = authenticate()
-        self.token = requests.post(os.getenv('API_URL') + '/api/v1/auth/signin', json=
-                                   {
-                                       "username": os.getenv('API_USERNAME'),
-                                       "password":  os.getenv('API_PASSWORD')
-                                   }).json()['token']
-        self.auth = {'Authorization': 'Bearer ' + self.token}
+        if auth:
+            self.token = requests.post(os.getenv('API_URL') + '/api/v1/auth/signin', json=
+                                       {
+                                           "username": os.getenv('API_USERNAME'),
+                                           "password":  os.getenv('API_PASSWORD')
+                                       }).json()['token']
+            self.auth = {'Authorization': 'Bearer ' + self.token}
+        else:
+            self.auth = ''
 
     def tweets(self, word, count=1000, language='en'):
         new_tweets = self.api_twitter.search(q=word, count=count, tweet_mode='extended')
@@ -26,17 +29,17 @@ class Request:
         texts = [x.full_text for x in lang]
         return texts
 
-    def get(self, route, address=os.getenv('API_URL'), query='', auth=False):
+    def get(self, route, address=os.getenv('API_URL'), query=''):
         request = address + route
-        res = requests.get(request, params=query, headers=self.auth if auth else '')
+        res = requests.get(request, params=query, headers=self.auth)
         return res
 
-    def put(self, route, body='', auth=False):
+    def put(self, route, body=''):
         request = os.getenv('API_URL') + route
-        res = requests.put(request, json=body, headers=self.auth if auth else '')
+        res = requests.put(request, json=body, headers=self.auth)
         return res
 
-    def post(self, route, body='', auth=False):
+    def post(self, route, body=''):
         request = os.getenv('API_URL') + route
-        res = requests.post(request, json=body, headers=self.auth if auth else '')
+        res = requests.post(request, json=body, headers=self.auth)
         return res
