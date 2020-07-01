@@ -36,12 +36,12 @@ def runAnalyze(word, reqId):
     stats_ratio['unanalyzed'] = 0
     log.info('Prediction done. Sending values to the API')
 
-    word_id = req.post('/api/v1/word/send', {"word": word.lower()}, auth=True)
+    word_id = req.post('/api/v1/word/send', {"word": word.lower()})
     stats_table['words'] = {'id': word_id.json()['id']}
-    req.post('/api/v1/stats/', stats_table, auth=True)
+    req.post('/api/v1/stats/', stats_table)
 
-    req.post('/api/v1/analyzes/', stats_ratio, auth=True)
-    req.put('/api/v1/requests/'+str(reqId), {"update_time": now, "state": "DONE"}, auth=True)
+    req.post('/api/v1/analyzes/', stats_ratio)
+    req.put('/api/v1/requests/'+str(reqId), {"update_time": now, "state": "DONE"})
     return ret
 
 
