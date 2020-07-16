@@ -1,6 +1,9 @@
+import json
 import os
 import requests
+from requests_oauthlib import OAuth1
 import tweepy
+from plurk_api import PlurkOAuthApi, PlurkApi
 
 
 def authenticate():
@@ -28,6 +31,27 @@ class Request:
         lang = [y for y in new_tweets if y.metadata['iso_language_code'] == language]
         texts = [x.full_text for x in lang]
         return texts
+
+    def tumblr(self, word, count=1000):
+        oauth = OAuth1(os.getenv('TUMBLR_KEY'), os.getenv('TUMBLR_SECRET'))
+        payload = {'tag': word, 'limit': count}
+        res = requests.get('https://api.tumblr.com/v2/tagged', params=payload, auth=oauth)
+        content = json.loads(res.content)
+        dif = []
+        for post in content["response"]:
+            if post["type"] == 'text':
+                dif.append(post)
+        print(dif)
+
+    def plurk(self, word, count=1000):
+        api_auth = PlurkOAuthApi(os.getenv('PLURK_APP_KEY'), os.getenv('PLURK_APP_SECRET'))
+        request_token = api_auth.request_token()
+        authorization_url = api_auth.authorization_url(request_token)
+        access_token = api_auth.access_token(request_token, "613016")
+
+        api = PlurkApi(os.getenv('PLURK_APP_KEY'), os.getenv('PLURK_APP_SECRET'), access_token["oauth_token"], access_token["oauth_token_secret"])
+        # print(req.callAPI('/APP/PlurkSearch/search', options={'query': word, 'offset': 30}))
+        print(api.request("/APP/Profile/getPublicProfile", {"user_id": 12345}))
 
     def get(self, route, address=os.getenv('API_URL'), query=''):
         request = address + route
