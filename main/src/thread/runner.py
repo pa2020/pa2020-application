@@ -19,8 +19,3 @@ def runnerTwitter(word, request_id):
     thread.start()
 
 
-def runnerModel(path):
-    log.info("Twitter inspection started")
-    thread = threading.Thread(target=runGenerate, kwargs={'path': path})
-    thread.start()
-
