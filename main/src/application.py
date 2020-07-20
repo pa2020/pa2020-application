@@ -1,4 +1,4 @@
-from main.src.api.route import *
+from main.src.broker.message import Message
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=2000)
+app = Message()
+app.liveReceive()
