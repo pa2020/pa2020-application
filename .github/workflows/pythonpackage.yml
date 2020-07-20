@@ -23,6 +23,7 @@ jobs:
         pip install -U pytest
         pip install requests
         pip install bs4
+        pip install pika
         pip install tweepy
         pip install plurk_api
         pip install fasttext

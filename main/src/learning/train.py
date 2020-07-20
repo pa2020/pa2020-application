@@ -17,7 +17,7 @@ def trainModel(file, out=''):
         out = file[:file.rindex('_')] + '.model'
     log.info('Training start')
     try:
-        hyper_params = {"lr": 0.01,
+        hyper_params = {"lr": 1.0,
                         "epoch": 50,
                         "wordNgrams": 2,
                         "dim": 20}

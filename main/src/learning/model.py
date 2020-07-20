@@ -1,13 +1,13 @@
 import logging
 import os
 import fasttext
-from enum import Enum
+import main.src.utils.responseFormat as Format
 
 from main.src.logger.config import logger
 
 log = logging.getLogger(__name__)
 logger()
-model = fasttext.load_model(os.getcwd() + '\\betsentiment-EN-tweets-sentiment-teams.model')
+model = fasttext.load_model(os.getcwd() + '/betsentiment-EN-tweets-sentiment-teams.model')
 
 
 def analyze(data):
@@ -42,20 +42,9 @@ def statistics(analyzed):
     total = len(analyzed)
     if total == 0:
         log.info('Pas de Tweet analysé')
-        return {}, {}
-    res_sentence = {
-        'positive_comment': positive_sentence,
-        'negative_comment': negative_sentence,
-        'neutral_comment': neutral_sentence,
-        'unanalyzed': 0,
-    }
-    res_stat = {
-        'positive': (positive / total) * 100,
-        'negative': (negative / total) * 100,
-        'neutral': (neutral / total) * 100,
-        'total': total
-    }
+    res_sentence = Format.sentence(positive_sentence, negative_sentence, neutral_sentence)
+    res_stat = Format.ratio(total, positive, negative, neutral)
     log.info('POSITIF :' + str(res_stat['positive']) + '%')
     log.info('NEGATIF :' + str(res_stat['negative']) + '%')
     log.info('NEUTRE :' + str(res_stat['neutral']) + '%')
-    return res_sentence, res_stat
+    return res_stat
