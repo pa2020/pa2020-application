@@ -24,8 +24,8 @@ jobs:
         pip install requests
         pip install bs4
         pip install pika
-        pip install tweepy
         pip install plurk_api
+        pip install tweepy
         pip install fasttext
         pip install python-dotenv
         pip install demoji
