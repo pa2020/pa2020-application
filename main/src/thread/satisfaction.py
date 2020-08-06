@@ -1,5 +1,5 @@
 import logging
-import os
+import time
 from datetime import datetime
 
 import main.src.learning.model as learn
@@ -13,6 +13,7 @@ logger()
 
 
 def runAnalyze(word, reqId):
+    time.sleep(5)  # demonstration purpose
     now = str(datetime.now().strftime("%Y-%m-%dT%H:%M:%S"))  # 2020-06-29T08:29:46.965000000
     req = Request()
 
