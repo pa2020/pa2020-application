@@ -67,3 +67,8 @@ class Request:
         request = os.getenv('API_URL') + route
         res = requests.post(request, json=body, headers=self.auth)
         return res
+
+    def delete(self, route, query=''):
+        request = os.getenv('API_URL') + route
+        res = requests.delete(request, params=query, headers=self.auth)
+        return res

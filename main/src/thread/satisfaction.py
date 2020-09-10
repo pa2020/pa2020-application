@@ -12,10 +12,11 @@ log = logging.getLogger(__name__)
 logger()
 
 
-def runAnalyze(word, reqId):
-    time.sleep(5)  # demonstration purpose
-    now = str(datetime.now().strftime("%Y-%m-%dT%H:%M:%S"))  # 2020-06-29T08:29:46.965000000
+def runAnalyze(word: str, reqId: str):
     req = Request()
+    now = str(datetime.now().strftime("%Y-%m-%dT%H:%M:%S"))  # 2020-06-29T08:29:46.965000000
+    req.put(f'/api/v1/requests/{str(reqId)}', {"update_time": now, "state": "RUNNING"})
+    time.sleep(5)  # demonstration purpose
 
     # Check Blacklisted words
     blacklist = req.get('/api/v1/blacklist/filter', query=f'word={word}').status_code
@@ -53,5 +54,6 @@ def runAnalyze(word, reqId):
     stats_table['words'] = {'id': word_id.json()['id']}
     req.post('/api/v1/stats/', stats_table)
     req.post('/api/v1/analyzes/', stats_ratio)
+    req.delete(f'/api/v1/queue/{str(reqId)}')
     req.put(f'/api/v1/requests/{str(reqId)}', {"update_time": now, "state": "DONE"})
     return ret
